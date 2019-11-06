@@ -1,0 +1,30 @@
+.toolbar {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.text {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    height: 800px;
+}
+
+#edit img{
+    width: 50%;
+    height: auto;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.a-upload input {
+    position: absolute;
+    opacity: 0;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #3c8dbc;
+    color: rgb(255, 255, 255);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: rgb(255, 255, 255);
+}

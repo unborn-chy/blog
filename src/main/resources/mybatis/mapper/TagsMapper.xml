@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.TagsMapper">
+    <select id="queryTags" resultType="com.scitc.blog.model.Tags">
+        SELECT tag_id,tag_name,create_time
+        FROM tb_tags
+    </select>
+    <insert id="insertTags" parameterType="com.scitc.blog.model.Tags" useGeneratedKeys="true" keyColumn="tag_id" keyProperty="tagId">
+        INSERT INTO tb_tags(tag_name,create_time) values (#{tagName},#{createTime})
+    </insert>
+    <select id="queryTagsById" parameterType="Integer" resultType="com.scitc.blog.model.Tags">
+        SELECT tag_id,tag_name,create_time FROM tb_tags WHERE tag_id = #{tagId}
+    </select>
+    <update id="updateTags" parameterType="com.scitc.blog.model.Tags" >
+        UPDATE tb_tags
+        <set>
+            <if test="tagName != null">tag_name = #{tagName} </if>
+        </set>
+        WHERE  tag_id = #{tagId}
+    </update>
+    <delete id="deleteTags" parameterType="Integer" >
+        DELETE FROM tb_tags WHERE tag_id = #{tagId}
+    </delete>
+    <!--<select id="queryTag" resultType="com.scitc.blog.model.Tags">-->
+        <!--SELECT COUNT(1) FROM tb_tags-->
+    <!--</select>-->
+
+
+</mapper>

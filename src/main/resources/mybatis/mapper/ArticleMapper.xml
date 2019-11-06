@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.ArticleMapper">
+
+    <resultMap id="resultMapArticle" type="com.scitc.blog.model.Article">
+        <id column="article_id" property="articleId"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_content" property="articleContent"/>
+        <result column="article_views" property="articleViews"/>
+        <result column="article_tags" property="articleTags"/>
+        <result column="article_like_count" property="articleLikeCount"/>
+        <result column="create_time" property="createTime"/>
+        <result column="last_edit_time" property="lastEditTime"/>
+        <result column="article_img" property="articleImg"/>
+        <result column="article_state" property="articleState"/>
+        <association column="user_id" property="userInfo" javaType="com.scitc.blog.model.UserInfo">
+            <id column="user_id" property="userId"/>
+            <result column="username" property="username"/>
+            <result column="user_img" property="userImg"/>
+        </association>
+        <association column="category_id" property="category" javaType="com.scitc.blog.model.Category">
+            <id column="category_id" property="categoryId"/>
+            <result column="category_name" property="categoryName"/>
+        </association>
+    </resultMap>
+
+
+    <delete id="deleteArticleById" parameterType="Integer">
+        DELETE
+        FROM
+          tb_article
+        WHERE
+          article_id = #{articleId}
+    </delete>
+
+    <select id="queryArticleList" resultMap="resultMapArticle">
+        SELECT
+        a.article_id,
+        u.user_id,
+        u.username,
+        u.user_img,
+        a.article_title,
+        a.article_content,
+        c.category_id,
+        c.category_name,
+        a.article_views,
+        a.article_tags,
+        a.article_like_count,
+        a.create_time,
+        a.last_edit_time,
+        a.article_img,
+        a.article_state
+        FROM
+        tb_article a,
+        tb_category c,
+        tb_user_info u
+        <where>
+            <if test="article.articleTitle != null">
+                AND a.article_title LIKE '%${article.articleTitle}%'
+            </if>
+            <if test="article.category!=null and article.category.categoryId!=null">
+                AND a.category_id = #{article.category.categoryId}
+            </if>
+            <if test="article.articleState!=null">
+                AND a.article_state = #{article.articleState}
+            </if>
+            <if test="article.userInfo!=null and article.userInfo.userId!=null">
+                AND a.user_id = #{article.userInfo.userId}
+            </if>
+            <if test="article.articleTags != null">
+
+                AND find_in_set(#{article.articleTags}, a.article_tags)
+            </if>
+            AND
+            a.user_id = u.user_id
+            AND
+            a.category_id = c.category_id
+        </where>
+        ORDER BY
+          a.create_time DESC
+        LIMIT #{rowIndex},#{pageSize}
+    </select>
+
+    <select id="queryArticleCount" resultType="int" >
+        SELECT
+          COUNT(1)
+        FROM
+        tb_article a,
+        tb_category c,
+        tb_user_info u
+        <where>
+            <if test="article.articleTitle != null">
+                AND a.article_title LIKE '%${article.articleTitle}%'
+            </if>
+            <if test="article.category!=null and article.category.categoryId!=null">
+                AND a.category_id = #{article.category.categoryId}
+            </if>
+            <if test="article.articleState!=null">
+                AND a.article_state = #{article.articleState}
+            </if>
+            <if test="article.userInfo!=null and article.userInfo.userId!=null">
+                AND a.user_id = #{article.userInfo.userId}
+            </if>
+            <if test="article.articleTags != null">
+                AND find_in_set(#{article.articleTags}, a.article_tags)
+            </if>
+            AND
+            a.user_id = u.user_id
+            AND
+            a.category_id = c.category_id
+        </where>
+
+    </select>
+
+    <insert id="insertArticle" parameterType="com.scitc.blog.model.Article" useGeneratedKeys="true"
+            keyColumn="article_id" keyProperty="articleId">
+        INSERT INTO
+        tb_article(user_id, article_title, article_content, category_id, article_tags, create_time,last_edit_time, article_img, article_state)
+        VALUES (#{userInfo.userId},#{articleTitle},#{articleContent},#{category.categoryId},#{articleTags},#{createTime},#{lastEditTime},#{articleImg},#{articleState})
+    </insert>
+    <update id="updateArticle" parameterType="com.scitc.blog.model.Article">
+        UPDATE
+        tb_article
+        <set>
+            <if test="userInfo!=null">user_id = #{userInfo.userId},</if>
+            <if test="articleTitle!=null">article_title = #{articleTitle},</if>
+            <if test="articleContent!=null">article_content = #{articleContent},</if>
+            <if test="category!=null">category_id = #{category.categoryId},</if>
+            <if test="articleViews!=null">article_views = #{articleViews},</if>
+            <if test="articleTags!=null">article_tags = #{articleTags},</if>
+            <if test="articleLikeCount!=null">article_like_count = #{articleLikeCount},</if>
+            <if test="lastEditTime!=null">last_edit_time = #{lastEditTime},</if>
+            <if test="articleImg!=null">article_img = #{articleImg},</if>
+            <if test="articleState!=null">article_state = #{articleState}</if>
+        </set>
+        WHERE
+        article_id=#{articleId}
+    </update>
+    <select id="queryByArticleId" parameterType="Integer" resultMap="resultMapArticle">
+        SELECT
+            a.article_id,
+            u.user_id,
+            u.username,
+            u.user_img,
+            a.article_title,
+            a.article_content,
+            c.category_id,
+            c.category_name,
+            a.article_views,
+            a.article_tags,
+            a.article_like_count,
+            a.create_time,
+            a.last_edit_time,
+            a.article_img,
+            a.article_state
+        FROM
+            tb_article a,
+            tb_category c,
+            tb_user_info u
+        WHERE
+          a.user_id = u.user_id
+        AND
+          a.category_id = c.category_id
+        AND
+          a.article_id = #{articleId}
+    </select>
+</mapper>

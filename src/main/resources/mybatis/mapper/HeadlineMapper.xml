@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.HeadLineMapper">
+    <insert id="insertHeadLine" parameterType="com.scitc.blog.model.HeadLine" useGeneratedKeys="true"
+            keyColumn="line_id" keyProperty="lineId">
+        INSERT INTO tb_head_line(line_name, line_link, line_img, create_time) VALUES (#{lineName},#{lineLink},#{lineImg},#{createTime})
+    </insert>
+    <update id="updateHeadLine" parameterType="com.scitc.blog.model.HeadLine">
+        UPDATE tb_head_line
+        <set>
+            <if test="lineName != null">line_name = #{lineName},</if>
+            <if test="lineLink != null">line_link = #{lineLink},</if>
+            <if test="lineImg != null">line_img = #{lineImg}</if>
+        </set>
+        WHERE
+        line_id = #{lineId}
+    </update>
+
+    <delete id="deleteHeadLine" parameterType="Integer">
+        DELETE FROM tb_head_line WHERE  line_id = #{lineId}
+    </delete>
+
+    <select id="queryHeadLineById" parameterType="Integer" resultType="com.scitc.blog.model.HeadLine">
+        SELECT line_id,line_name, line_link, line_img, create_time FROM tb_head_line WHERE line_id = #{lineId}
+    </select>
+    <select id="queryHeadLineList" resultType="com.scitc.blog.model.HeadLine">
+        SELECT line_id,line_name, line_link, line_img, create_time FROM tb_head_line
+    </select>
+
+</mapper>

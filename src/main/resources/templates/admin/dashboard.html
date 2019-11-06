@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer">
+    <title>小咸鱼 | 仪表盘</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!--css js 文件的引入-->
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/AdminLTE.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/AdminLTE.min.css}">
+    <!-- 蓝色皮肤 -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css}">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--toastr.js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/admin/newarticle.css" th:href="@{/css/admin/common.css}">
+    <style>
+
+    </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--顶部状态栏-->
+    <div th:replace="common/admincommon :: #common-main-header">
+    </div>
+
+    <!--侧边栏-->
+    <div th:replace="common/admincommon :: #common-main-sidebar">
+    </div>
+    <!--主要内容-->
+
+    <div class="content-wrapper">
+        <!-- 导航// -->
+        <section class="content-header">
+            <h1>
+                仪表盘
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">仪表盘</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <!--中间-->
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner article-count">
+                        </div>
+                        <a href="#"  th:href="@{/index}" class="small-box-footer">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner comment-count">
+
+                        </div>
+                        <a href="#" th:href="@{/admin/comment}" class="small-box-footer">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner views-count">
+                        </div>
+                        <a href="#"  th:href="@{/index}" class="small-box-footer">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner found-days">
+
+                        </div>
+                        <a href="#" class="small-box-footer">2019-8-15 <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">最新文章</h3>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead>
+                                <tr>
+                                    <th width="50%">标题</th>
+                                    <th>状态</th>
+                                    <th>日期</th>
+                                </tr>
+                                </thead>
+                                <tbody class="new-article">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12" id="widgetCommentLastestBody">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">最新评论</h3>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead>
+                                <tr>
+                                    <th>评论者</th>
+                                    <th width="30%">内容</th>
+                                    <!--<th>状态</th>-->
+                                    <th>日期</th>
+                                </tr>
+                                </thead>
+                                <tbody class="new-comment">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+
+                    <!--日历-->
+                    <div class="box box-solid bg-green-gradient">
+                        <div class="box-header ui-sortable-handle" style="cursor: move;">
+                            <i class="fa fa-calendar"></i>
+
+                            <h3 class="box-title">日历</h3>
+                            <!-- tools box -->
+                            <div class="pull-right box-tools">
+
+                                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i
+                                        class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <!-- /. tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="">
+                            <!--The calendar -->
+                            <div id="calendar" style="width: 100%">
+                                <div class="datepicker datepicker-inline">
+                                    <div class="datepicker-days" style="">
+                                        <table class="table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7" class="datepicker-title" style="display: none;"></th>
+                                            </tr>
+                                            <tr>
+                                                <th class="prev">«</th>
+                                                <th colspan="5" class="datepicker-switch">July 2019</th>
+                                                <th class="next">»</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="dow">Su</th>
+                                                <th class="dow">Mo</th>
+                                                <th class="dow">Tu</th>
+                                                <th class="dow">We</th>
+                                                <th class="dow">Th</th>
+                                                <th class="dow">Fr</th>
+                                                <th class="dow">Sa</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="old day" data-date="1561852800000">30</td>
+                                                <td class="day" data-date="1561939200000">1</td>
+                                                <td class="day" data-date="1562025600000">2</td>
+                                                <td class="day" data-date="1562112000000">3</td>
+                                                <td class="day" data-date="1562198400000">4</td>
+                                                <td class="day" data-date="1562284800000">5</td>
+                                                <td class="day" data-date="1562371200000">6</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="day" data-date="1562457600000">7</td>
+                                                <td class="day" data-date="1562544000000">8</td>
+                                                <td class="day" data-date="1562630400000">9</td>
+                                                <td class="day" data-date="1562716800000">10</td>
+                                                <td class="day" data-date="1562803200000">11</td>
+                                                <td class="day" data-date="1562889600000">12</td>
+                                                <td class="day" data-date="1562976000000">13</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="day" data-date="1563062400000">14</td>
+                                                <td class="day" data-date="1563148800000">15</td>
+                                                <td class="day" data-date="1563235200000">16</td>
+                                                <td class="day" data-date="1563321600000">17</td>
+                                                <td class="day" data-date="1563408000000">18</td>
+                                                <td class="day" data-date="1563494400000">19</td>
+                                                <td class="day" data-date="1563580800000">20</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="day" data-date="1563667200000">21</td>
+                                                <td class="day" data-date="1563753600000">22</td>
+                                                <td class="day" data-date="1563840000000">23</td>
+                                                <td class="day" data-date="1563926400000">24</td>
+                                                <td class="day" data-date="1564012800000">25</td>
+                                                <td class="day" data-date="1564099200000">26</td>
+                                                <td class="day" data-date="1564185600000">27</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="day" data-date="1564272000000">28</td>
+                                                <td class="day" data-date="1564358400000">29</td>
+                                                <td class="day" data-date="1564444800000">30</td>
+                                                <td class="day" data-date="1564531200000">31</td>
+                                                <td class="new day" data-date="1564617600000">1</td>
+                                                <td class="new day" data-date="1564704000000">2</td>
+                                                <td class="new day" data-date="1564790400000">3</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="new day" data-date="1564876800000">4</td>
+                                                <td class="new day" data-date="1564963200000">5</td>
+                                                <td class="new day" data-date="1565049600000">6</td>
+                                                <td class="new day" data-date="1565136000000">7</td>
+                                                <td class="new day" data-date="1565222400000">8</td>
+                                                <td class="new day" data-date="1565308800000">9</td>
+                                                <td class="new day" data-date="1565395200000">10</td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="today" style="display: none;">Today</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="clear" style="display: none;">Clear</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="datepicker-months" style="display: none;">
+                                        <table class="table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7" class="datepicker-title" style="display: none;"></th>
+                                            </tr>
+                                            <tr>
+                                                <th class="prev">«</th>
+                                                <th colspan="5" class="datepicker-switch">2019</th>
+                                                <th class="next">»</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="7"><span class="month">Jan</span><span
+                                                        class="month">Feb</span><span
+                                                        class="month">Mar</span><span class="month">Apr</span><span
+                                                        class="month">May</span><span
+                                                        class="month">Jun</span><span
+                                                        class="month focused">Jul</span><span
+                                                        class="month">Aug</span><span
+                                                        class="month">Sep</span><span class="month">Oct</span><span
+                                                        class="month">Nov</span><span
+                                                        class="month">Dec</span></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="today" style="display: none;">Today</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="clear" style="display: none;">Clear</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="datepicker-years" style="display: none;">
+                                        <table class="table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7" class="datepicker-title" style="display: none;"></th>
+                                            </tr>
+                                            <tr>
+                                                <th class="prev">«</th>
+                                                <th colspan="5" class="datepicker-switch">2010-2019</th>
+                                                <th class="next">»</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span
+                                                        class="year">2011</span><span class="year">2012</span><span
+                                                        class="year">2013</span><span
+                                                        class="year">2014</span><span class="year">2015</span><span
+                                                        class="year">2016</span><span
+                                                        class="year">2017</span><span class="year">2018</span><span
+                                                        class="year focused">2019</span><span
+                                                        class="year new">2020</span></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="today" style="display: none;">Today</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="clear" style="display: none;">Clear</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="datepicker-decades" style="display: none;">
+                                        <table class="table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7" class="datepicker-title" style="display: none;"></th>
+                                            </tr>
+                                            <tr>
+                                                <th class="prev">«</th>
+                                                <th colspan="5" class="datepicker-switch">2000-2090</th>
+                                                <th class="next">»</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="7"><span class="decade old">1990</span><span
+                                                        class="decade">2000</span><span
+                                                        class="decade focused">2010</span><span
+                                                        class="decade">2020</span><span
+                                                        class="decade">2030</span><span class="decade">2040</span><span
+                                                        class="decade">2050</span><span
+                                                        class="decade">2060</span><span class="decade">2070</span><span
+                                                        class="decade">2080</span><span
+                                                        class="decade">2090</span><span class="decade new">2100</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="today" style="display: none;">Today</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="clear" style="display: none;">Clear</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="datepicker-centuries" style="display: none;">
+                                        <table class="table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7" class="datepicker-title" style="display: none;"></th>
+                                            </tr>
+                                            <tr>
+                                                <th class="prev">«</th>
+                                                <th colspan="5" class="datepicker-switch">2000-2900</th>
+                                                <th class="next">»</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="7"><span class="century old">1900</span><span
+                                                        class="century focused">2000</span><span
+                                                        class="century">2100</span><span
+                                                        class="century">2200</span><span
+                                                        class="century">2300</span><span
+                                                        class="century">2400</span><span
+                                                        class="century">2500</span><span
+                                                        class="century">2600</span><span
+                                                        class="century">2700</span><span
+                                                        class="century">2800</span><span
+                                                        class="century">2900</span><span
+                                                        class="century new">3000</span></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="today" style="display: none;">Today</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="clear" style="display: none;">Clear</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Main Footer -->
+<div th:replace="common/admincommon :: #common-main-footer">
+</div>
+
+
+</div>
+<script src="../AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="../AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script src="../AdminLTE-2.4.13/dist/js/adminlte.min.js" th:src="@{/AdminLTE-2.4.13/dist/js/adminlte.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script type="text/javascript"  src="/js/admin/usercommon.js" th:src="@{/js/admin/usercommon.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript"  src="/js/admin/dashboard.js" th:src="@{/js/admin/dashboard.js}"></script>
+</body>
+</html>

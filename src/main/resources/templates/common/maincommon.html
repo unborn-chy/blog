@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>未生 | 首页</title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="referrer" content="no-referrer">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="renderer" content="webkit">
+    <meta name="theme-color" content="#fff">
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <meta name='robots' content='noindex,follow'/>
+    <link rel="stylesheet" href="#"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="#" th:href="@{/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" href="index.css" th:href="@{/css/frontend/index.css}">
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #eee;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3798e8;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page" class="hfeed site">
+    <!--头部 导航-->
+    <header id="masthead" class="site-header">
+
+        <nav id="top-header">
+            <div class="top-nav">
+                <div id="user-profile">
+                    <div class="user-login">欢迎光临！</div>
+                    <div class="nav-set">
+                        <div class="nav-login">
+                            <a href="/blog/admin/login" title="Login"><i class="fa fa-user"></i>登录
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </nav>
+
+        <!--  #menu-box -->
+        <div id="menu-box">
+            <div id="top-menu">
+                <!--搜索-->
+                <span class="nav-search">
+                        <i class="fa fa-search"></i>
+                    </span>
+                <span class="mobile-login">
+                    <a class="mobile-user-login" title="Login">
+                    <i class="fa fa-user"></i>
+                    </a>
+                </span>
+                <div class="logo-site">
+                    <h1 class="site-title">
+                        <a href="/blog/index" title="" rel="home">未生</a>
+                    </h1>
+                    <p class="site-description"> 人生如逆旅，我亦是行人</p>
+                </div><!-- .logo-site -->
+
+                <div id="site-nav-wrap">
+                    <div id="sidr-close">
+                        <a href="#sidr-close" class="toggle-sidr-close">×</a>
+                    </div>
+                    <nav id="site-nav" class="main-nav">
+                        <a href="javascript:void(0)" id="navigation-toggle" class="bars">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <div class="menu-mainmenu-container">
+                            <ul id="menu-mainmenu" class="down-menu nav-menu">
+                            </ul>
+                        </div>
+                    </nav><!-- #site-nav -->
+                </div><!-- #site-nav-wrap -->
+                <div class="clear"></div>
+            </div><!-- #top-menu -->
+        </div>
+        <!-- #menu-box -->
+
+    </header><!-- #masthead -->
+
+    <!--搜索-->
+    <div id="search-main">
+        <div class="searchbar">
+            <!--<form method="get" id="searchform" action="/search">-->
+                    <span>
+                        <input type="text" id="keyword" placeholder="输入搜索内容" required/>
+                        <button type="submit" id="searchsubmit">搜索</button>
+                    </span>
+            <!--</form>-->
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!--页码-->
+    <nav class="navigation pagination" role="navigation">
+        <h2 class="screen-reader-text">文章导航</h2>
+        <div class="nav-links">
+        </div>
+    </nav>
+
+    <!--侧边栏-->
+    <div id="sidebar" class="widget-area all-sidebar">
+        <aside class="widget about wow fadeInUp" data-wow-delay="0.3s">
+            <h3 class="widget-title">
+                <i class="fa fa-bars"></i>关于本站
+            </h3>
+            <div id="feed_widget">
+                <div class="feed-about">
+                    <div class="about-main">
+                        <div class="about-img">
+                            <img id="user-img" src="img/head-img.jpg" th:src="@{/img/blog-head-img.jpg}" alt="QR Code"/>
+                        </div>
+                        <div class="about-name">博客初心</div>
+                        <div class="about-the">
+                            明明身处于人群中，但你还是孤身一人。只能看着人潮人海，独自哀叹。
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <br/>
+                    <div class="about-inf">
+                        <span class="articleCount">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </aside>
+
+        <aside class="widget wow fadeInUp" data-wow-delay="0.3s">
+            <h3 class="widget-title">
+                <i class="fa fa-bars"></i>网站概况
+            </h3>
+            <div class="widget-text">
+                <ul class="site-profile">
+
+                </ul>
+
+            </div>
+            <div class="clear"></div>
+        </aside>
+
+        <!--热门标签-->
+        <aside class="widget cx_tag_cloud wow fadeInUp" data-wow-delay="0.3s">
+            <h3 class="widget-title"><i class="fa fa-bars"></i>热门标签</h3>
+            <div class="tagcloud">
+
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </aside>
+
+        <!--近期评论-->
+        <aside class="widget recent_comments wow fadeInUp" data-wow-delay="0.3s">
+            <h3 class="widget-title"><i class="fa fa-bars"></i>近期评论</h3>
+
+
+            <div id="message" class="message-widget">
+                <ul class="recently-comment">
+                    <li>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </aside>
+    </div>
+
+
+    <div class="links-box">
+        <div id="links">
+            <ul class="lx7">
+                <li class="link-f link-name wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="https://liuyanzhao.com">言曌博客</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <footer id="colophon" class="site-footer wow fadeInUp" data-wow-delay="0.3s" role="contentinfo">
+        <div class="site-info">
+            <p style="text-align: center;">Copyright © 原博客：<a href="https://liuyanzhao.com/" target="_blank"
+                                                              rel="noopener noreferrer">言曌博客 </a>
+            </p>
+        </div><!-- .site-info -->
+    </footer><!-- .site-footer -->
+
+</div><!-- .site -->
+<script type='text/javascript' src="jquery.min.js " th:src="@{/js/common/jquery.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<!--响应式侧边栏-->
+<!--<script src="superfish.js" th:src="@{/js/frontend/component/superfish.js}"></script>-->
+<script src="maincommon.js" th:src="@{/js/common/maincommon.js}"></script>
+</body>
+
+</html>

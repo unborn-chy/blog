@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.UserInfoMapper">
+    <insert id="insertUserInfo" parameterType="com.scitc.blog.model.UserInfo" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        INSERT INTO tb_user_info(username, password, user_email, user_img,user_type, user_explain, create_time)
+        VALUES (#{username},#{password},#{userEmail},#{userImg},#{userType},#{userExplain},#{createTime})
+    </insert>
+    <update id="updateUserInfo" parameterType="com.scitc.blog.model.UserInfo" >
+        UPDATE tb_user_info
+        <set>
+            <if test="username!=null">username = #{username},</if>
+            <if test="password!=null">password = #{password},</if>
+            <if test="userEmail!=null">user_email = #{userEmail},</if>
+            <if test="userImg!=null">user_img = #{userImg},</if>
+            <if test="userType!=null">user_type = #{userType},</if>
+            <if test="userExplain!=null">user_explain = #{userExplain}</if>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserInfo" parameterType="Integer">
+        DELETE FROM tb_user_info WHERE user_id = #{userId}
+    </delete>
+
+    <select id="queryUserInfo" resultType="com.scitc.blog.model.UserInfo">
+        SELECT user_id,username, password, user_email, user_img,user_type, user_explain, create_time
+        FROM tb_user_info
+        <where>
+            <if test="userId!=null">AND user_id = #{userId}</if>
+            <if test="username!=null">AND username = #{username}</if>
+            <if test="userEmail!=null">AND user_email = #{userEmail}</if>
+        </where>
+    </select>
+
+
+    <select id="queryUserInfoList" resultType="com.scitc.blog.model.UserInfo">
+        SELECT user_id,username, user_email, user_img, user_type,user_explain, create_time
+        FROM tb_user_info
+        ORDER BY user_type ASC
+         LIMIT #{rowIndex},#{pageSize}
+    </select>
+
+    <select id="queryUserInfoCount"  resultType="int">
+        SELECT COUNT(1)
+        FROM tb_user_info
+    </select>
+</mapper>

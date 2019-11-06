@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小咸鱼 | 文章列表</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!--css js 文件的引入-->
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/AdminLTE.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/AdminLTE.min.css}">
+    <!-- 蓝色皮肤 -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css}">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--toastr.js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/admin/newarticle.css" th:href="@{/css/admin/common.css}">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--顶部状态栏-->
+    <div th:replace="common/admincommon :: #common-main-header">
+    </div>
+
+    <!--侧边栏-->
+    <div th:replace="common/admincommon :: #common-main-sidebar">
+    </div>
+
+
+    <!--主要内容-->
+    <div class="content-wrapper">
+        <!-- 导航 -->
+        <section class="content-header">
+            <h1>
+                文章列表
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li>文章管理</li>
+                <li class="active">文章列表</li>
+            </ol>
+        </section>
+        <!--中间-->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul style="list-style: none;padding-left: 0;float: left;">
+                        <li class="publish" style="float: left">
+                            <a href="#" th:href="@{/admin/articles(status=0)}" style="color: #000">已发布
+                                <span id="count-status-0">(0)</span>&nbsp;|&nbsp;</a>
+                        </li>
+                        <li class="checking" style="float: left">
+                            <a href="#" th:href="@{/admin/articles(status=1)}">待审核
+                                <span id="count-status-1">(0)</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>作者</th>
+                                    <th>分类目录</th>
+                                    <th>标签</th>
+                                    <th>点赞</th>
+                                    <th>访问量</th>
+                                    <th>日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="article-tbody">
+                                <tr>
+                                    <th colspan="8" style="text-align: center">暂无数据</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box-footer">
+                            <div class="no-margin pull-left" id="page-num">
+                                <!--第1-->
+                                <!--/0页-->
+                            </div>
+                            <ul class="pagination no-margin pull-right" id="page-nva">
+                                <li><a class="btn btn-sm disabled " href="#"  id="page-home">首页</a>
+                                </li>
+                                <li><a class="btn btn-sm disabled" href="#" id="page-previous">上一页</a>
+                                </li>
+                                <li><a class="btn btn-sm disabled" href="#" id="page-next">下一页</a>
+                                </li>
+                                <li><a class="btn btn-sm disabled" href="#" id="page-last">尾页</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--模态框-->
+
+        <div th:replace="common/admincommon :: .common-confirm-delete">
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <div th:replace="common/admincommon :: #common-main-footer">
+    </div>
+
+
+</div>
+<script src="../AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="../AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script src="../AdminLTE-2.4.13/dist/js/adminlte.min.js" th:src="@{/AdminLTE-2.4.13/dist/js/adminlte.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript"  src="/js/admin/usercommon.js" th:src="@{/js/admin/usercommon.js}"></script>
+<script type="text/javascript" src="js/admin/articlelist.js" th:src="@{/js/admin/articlelist.js}"></script>
+</body>
+</html>

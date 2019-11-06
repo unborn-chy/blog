@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>未生 | 首页</title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="referrer" content="no-referrer">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="renderer" content="webkit">
+    <meta name="theme-color" content="#fff">
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <meta name='robots' content='noindex,follow'/>
+    <link rel="stylesheet" href="#"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="index.css" th:href="@{/css/frontend/index.css}">
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #eee;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3798e8;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page" class="hfeed site">
+    <header th:replace="common/maincommon :: #masthead">
+    </header>
+
+    <!--</header>&lt;!&ndash; #masthead &ndash;&gt;-->
+    <div th:replace="common/maincommon :: #search-main"></div>
+    <nav class="breadcrumb">
+
+    </nav>
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+                <article class="post">
+                    <header class="entry-header">
+                        <h1 class="entry-title">
+                        </h1>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <div class="single-content">
+                        </div>
+
+
+                        <div class="clear"></div>
+                        <div id="social">
+                            <div class="social-main">
+                                    <span class="like">
+                                        <a href="javascript:void(0);" title="点赞" class="favorite">
+                                            <i class="fa fa-thumbs-up"></i>赞
+                                            <i class="count"></i>
+                                        </a>
+                                    </span>
+                                <div class="shang-p">
+                                    <span class="tipso_style" id="tip-p"></span>
+                                    <span class="shang-s"><a title="赞助本站">赏</a></span> </span>
+                                </div>
+                                <div class="share-sd">
+                                        <span class="share-s"><a href="javascript:void(0)" id="share-s" title="分享"><i
+                                                class="fa fa-share-alt"></i>分享</a></span>
+                                    <div id="share">
+                                        <ul class="bdsharebuttonbox bdshare-button-style1-16"
+                                            data-bd-bind="1541944366515">
+                                            <li><a title="更多" class="bds_more fa fa-plus-square" data-cmd="more"
+                                                   onclick="return false;"
+                                                   href="#"></a></li>
+                                            <li><a title="分享到QQ空间" class="fa fa-qq" data-cmd="qzone"
+                                                   onclick="return false;"
+                                                   href="#"></a></li>
+                                            <li><a title="分享到新浪微博" class="fa fa-weibo" data-cmd="tsina"
+                                                   commentContent                       onclick="return false;"
+                                                   href="#"></a></li>
+                                            <li><a title="分享到腾讯微博" class="fa fa-pinterest-square" data-cmd="tqq"
+                                                   onclick="return false;"
+                                                   href="#"></a></li>
+                                            <li><a title="分享到人人网" class="fa fa-renren" data-cmd="renren"
+                                                   onclick="return false;"
+                                                   href="#"></a></li>
+                                            <li><a title="分享到微信" class="fa fa-weixin" data-cmd="weixin"
+                                                   onclick="return false;"
+                                                   href="#"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+
+                        <footer class="single-footer">
+                            <ul class="single-meta">
+
+                                <li class="comment">
+                                    <a href="javascript:void(0)"  rel="external nofollow">
+                                        <i class="fa fa-comment-o"></i> 0
+                                    </a>
+                                </li>
+                                <!--浏览量-->
+                                <li class="views"><i class="fa fa-eye"></i></li>
+                                <li class="r-hide"><a href="javascript:pr()" title="侧边栏"><i
+                                        class="fa fa-caret-left"></i>
+                                    <i class="fa fa-caret-right"></i></a></li>
+                            </ul>
+                            <ul id="fontsize">
+                                <li>A+</li>
+                            </ul>
+                            <div class="single-cat-tag">
+                                <div class="single-cat">所属分类：
+                                </div>
+                            </div>
+                        </footer><!-- .entry-footer -->
+
+                        <div class="clear"></div>
+
+                    </div><!-- .entry-content -->
+
+                </article><!-- #post -->
+
+                <div class="single-tag">
+                    <ul class="wow fadeInUp article-tags" data-wow-delay="0.3s">
+                        <!--<li>-->
+                        <!--<a href="/tag/error" rel="tag" style="background:#4fad7b">故障</a>-->
+                        <!--</li>-->
+
+                    </ul>
+                </div>
+
+                <!--版权说明-->
+                <div class="authorbio wow fadeInUp" data-wow-delay="0.3s">
+
+                    <div class="clear"></div>
+                </div>
+
+                <div class="scroll-comments"></div>
+                <div id="comments" class="comments-area">
+                    <div id="respond" class="comment-respond wow fadeInUp" data-wow-delay="0.3s">
+                        <h3 id="reply-title" class="comment-reply-title">发表评论
+                        </h3>
+
+                            <p class="comment-form-comment">
+                            <div class="OwO"></div>
+                            <textarea id="commentContent" class="comment-input-content"
+                                      name="commentContent" rows="4" tabindex="1" placeholder="赶快评论一个吧！"></textarea>
+                            <div class="native-message" style="display: none"></div>
+                            </p>
+                            <div class="clear"></div>
+                            <p class="form-submit">
+                                <input id="submit" type="button"  value="提交评论">
+
+                            </p>
+
+                    </div>
+                    <h2 class="comments-title wow fadeInUp" data-wow-delay="0.3s"> 目前评论：0</h2>
+                    <ul class="comment-list" id="comments-list">
+
+                    </ul><!-- .comment-list -->
+                </div>
+                <div class="clear"></div>
+
+            </main><!-- .site-main -->
+
+        </div><!-- .content-area -->
+        <div th:replace="common/maincommon :: #sidebar">
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div th:replace="common/maincommon :: .links-box">
+    </div>
+    <div class="clear"></div>
+    <footer th:replace="common/maincommon :: #colophon">
+    </footer>
+</div><!-- .site -->
+<script type='text/javascript' src="jquery.min.js " th:src="@{/js/common/jquery.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="catetag.js" th:src="@{/js/frontend/catetag.js}"></script>
+<script src="article.js" th:src="@{/js/frontend/article.js}"></script>
+<script src="script.js" th:src="@{/js/frontend/component/script.js}"></script>
+
+
+</body>
+
+</html>

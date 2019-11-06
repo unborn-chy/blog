@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.CategoryMapper">
+    <!--查询列表  为空显示全部信息，不为空显示一级类别，parentId为空看显示所有二级类别 ，-->
+
+    <resultMap id="categoryResultMap" type="com.scitc.blog.model.Category">
+        <id column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="create_time" property="createTime"/>
+        <association property="parentId" column="parent_id" javaType="com.scitc.blog.model.Category">
+            <id column="parent_id" property="categoryId"/>
+        </association>
+    </resultMap>
+    <select id="queryCategory" resultMap="categoryResultMap">
+      SELECT
+        category_id,category_name,create_time,parent_id
+      FROM
+        tb_category
+      <where>
+          <if test="category == null">
+              and parent_id is not null
+          </if>
+
+          <if test="category!= null and category.parentId==null">
+              and parent_id = '0'
+          </if>
+
+          <if test="category!= null and category.parentId!=null">
+              and parent_id != '0'
+          </if>
+
+          <if test="category!= null and category.parentId != null and category.parentId.categoryId != null">
+              and parent_id  = #{category.parentId.categoryId }
+          </if>
+      </where>
+
+    </select>
+
+
+    <select id="queryCategoryCount" resultType="int">
+        SELECT
+            COUNT(1)
+        FROM
+        tb_category
+        <where>
+            <if test="category == null">
+                and parent_id is not null
+            </if>
+
+            <if test="category!= null and category.parentId==null">
+                and parent_id = '0'
+            </if>
+            <if test="category!= null and category.parentId!=null">
+                and parent_id != '0'
+            </if>
+
+            <if test="category!= null and category.parentId != null and category.parentId.categoryId != null">
+                and parent_id  = #{category.parentId.categoryId }
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertCategory" parameterType="com.scitc.blog.model.Category" useGeneratedKeys="true"
+            keyColumn="category_id" keyProperty="categoryId">
+        INSERT INTO tb_category(category_name, create_time, parent_id)
+        VALUES (#{categoryName},#{createTime},#{parentId.categoryId})
+    </insert>
+
+    <update id="updateCategory" parameterType="com.scitc.blog.model.Category" >
+        UPDATE tb_category
+        <set>
+            <if test="categoryName!=null"> category_name = #{categoryName},</if>
+            <if test="parentId!=null">parent_id = #{parentId.categoryId}</if>
+        </set>
+        WHERE
+        category_id = #{categoryId}
+    </update>
+    <delete id="deleteCategory" parameterType="Integer">
+        DELETE
+        FROM
+          tb_category
+        WHERE
+          category_id = #{categoryId}
+    </delete>
+
+
+    <select id="queryCategoryById"  resultMap="categoryResultMap">
+        SELECT
+        category_id,category_name,create_time,parent_id
+        FROM
+        tb_category
+          <where>
+              <if test="categoryId!=null">and category_id = #{categoryId}</if>
+              <if test="categoryName!=null">and category_name = #{categoryName}</if>
+          </where>
+
+    </select>
+</mapper>

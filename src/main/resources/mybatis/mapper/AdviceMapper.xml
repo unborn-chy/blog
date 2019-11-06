@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.AdviceMapper">
+    <insert id="insertAdvice" parameterType="com.scitc.blog.model.Advice" useGeneratedKeys="true" keyColumn="advice_id" keyProperty="adviceId">
+        INSERT INTO tb_advice(advice_content, create_time) values (#{adviceContent},#{createTime})
+    </insert>
+    <delete id="deleteAdvice" parameterType="Integer">
+        DELETE FROM tb_advice WHERE advice_id = #{adviceId}
+    </delete>
+    <update id="updateAdvice" parameterType="com.scitc.blog.model.Advice" >
+        UPDATE tb_advice
+        <set>
+            <if test="adviceContent!=null"> advice_content = #{adviceContent}</if>
+        </set>
+        WHERE advice_id = #{adviceId}
+    </update>
+
+    <select id="queryAdviceById" parameterType="Integer" resultType="com.scitc.blog.model.Advice">
+        SELECT advice_id,advice_content, create_time FROM tb_advice WHERE advice_id = #{adviceId}
+    </select>
+
+    <select id="queryAdvice" resultType="com.scitc.blog.model.Advice">
+        SELECT advice_id,advice_content, create_time FROM tb_advice
+    </select>
+</mapper>

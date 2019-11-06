@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小咸鱼 | 登录</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/AdminLTE.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/AdminLTE.min.css}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/plugins/iCheck/square/blue.css"
+          th:href="@{/AdminLTE-2.4.13/plugins/iCheck/square/blue.css}">
+
+    <!--toastr.js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <style>
+        .login-page {
+            height: auto;
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body class="hold-transition login-page">
+
+<div class="login-box">
+    <div class="row">
+        <div class="col-xs-12 hidden-lg" style="height: 100px;"></div>
+    </div>
+
+    <div class="login-logo">
+        <a href="#"><b>未生</b>LTE
+        <img src="logo.png"  th:src="@{/img/logo.png}" width="100px" height="100px">
+        </a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">找回密码</p>
+
+
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="用户名" id="user-name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <input type="email" class="form-control" placeholder="邮箱" id="user-email">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <br/>
+                <p>新密码将会发送到你的邮件中</p>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <br /><br />
+                <button type="submit" class="btn btn-primary btn-block btn-flat" id="find-user-psw">获取新密码</button>
+            </div>
+            <!-- /.col -->
+        </div>
+
+
+    </div>
+        <p id="nav">
+            <a href="#" th:href="@{/admin/login}">登录</a> |
+            <a href="#" th:href="@{/admin/register}">注册</a>
+        </p>
+        <p><a href="#" th:href="@{/index}">返回博客主页</a></p>
+    </div>
+
+    <script src="../AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js"
+            th:src="@{/AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js}"></script>
+    <script src="../AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js"
+            th:src="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- iCheck -->
+    <script src="../AdminLTE-2.4.13/plugins/iCheck/icheck.min.js"
+            th:href="@{/AdminLTE-2.4.13/plugins/iCheck/icheck.min.js}"></script>
+    <script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script  type="text/javascript" th:src="@{/js/admin/login.js}"></script>
+
+</body>
+</html>

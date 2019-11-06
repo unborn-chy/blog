@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer">
+    <title>小咸鱼 | 个人资料</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!--css js 文件的引入-->
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/AdminLTE.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/AdminLTE.min.css}">
+    <!-- 蓝色皮肤 -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css}">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--toastr.js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/admin/newarticle.css" th:href="@{/css/admin/common.css}">
+    <style>
+        .a-upload input {position: absolute;opacity: 0;}
+    </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--顶部状态栏-->
+    <div th:replace="common/admincommon :: #common-main-header">
+    </div>
+
+    <!--侧边栏-->
+    <div th:replace="common/admincommon :: #common-main-sidebar">
+    </div>
+    <!--主要内容-->
+    <div class="content-wrapper">
+        <!-- 导航// -->
+        <section class="content-header">
+            <h1>
+                个人资料
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li>用户</li>
+                <li class="active">个人资料</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+
+        <section class="content container-fluid">
+
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#general" data-toggle="tab" aria-expanded="true">基本资料</a>
+                        </li>
+                        <li class="">
+                            <a href="#pass" data-toggle="tab" aria-expanded="false">密码修改</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="general">
+                            <form method="post" class="form-horizontal" id="profileForm">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-sm-4 control-label">
+                                            当前角色:
+                                        </label>
+                                        <div class="col-lg-4 col-sm-8" style="padding-top: 7px;">
+                                            <label id="user-type"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-sm-4 control-label">用户名:
+                                        </label>
+                                        <div class="col-lg-4 col-sm-8">
+                                            <input type="text" class="form-control" id="user-name" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="col-lg-2 col-sm-4 control-label">邮箱:</label>
+                                        <div class="col-lg-4 col-sm-8">
+                                            <input type="text" class="form-control" id="user-email">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-sm-4 control-label">头像:</label>
+                                        <div class="col-lg-4 col-sm-8">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control user-img-input" id="user-img-input">
+                                                <span class="input-group-btn">
+                                                  <a class="btn btn-primary btn-sm a-upload">
+                                                    <input type="file"  id="user-img-file" class="user-img-select"/>选择文件
+                                                  </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 col-sm-4 control-label">个人说明:
+                                        </label>
+                                        <div class="col-lg-4 col-sm-8">
+                                            <textarea class="form-control" rows="3" id="user-explain"style="resize: none"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-primary btn-sm " id="user-preserve">保存
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="pass">
+                            <form method="post" class="form-horizontal" id="passForm">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">原密码:</label>
+                                        <div class="col-sm-4">
+                                            <input type="password" class="form-control" id="old-password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">新密码:</label>
+                                        <div class="col-sm-4">
+                                            <input type="password" class="form-control" id="new-password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">确认密码:</label>
+                                        <div class="col-sm-4">
+                                            <input type="password" class="form-control" id="re-new-password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-primary btn-sm " id="update-psw-btn">修改
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+</div>
+<!-- /.content-wrapper -->
+<!-- Main Footer -->
+<div th:replace="common/admincommon :: #common-main-footer">
+</div>
+
+
+</div>
+<script src="../AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="../AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script src="../AdminLTE-2.4.13/dist/js/adminlte.min.js" th:src="@{/AdminLTE-2.4.13/dist/js/adminlte.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript"  src="/js/admin/usercommon.js" th:src="@{/js/admin/usercommon.js}"></script>
+<script type="text/javascript" src="js/admin/userinfo.js" th:src="@{/js/admin/userinfo.js}"></script>
+</body>
+</html>

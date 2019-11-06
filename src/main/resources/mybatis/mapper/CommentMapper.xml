@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scitc.blog.mapper.CommentMapper">
+
+    <resultMap id="resultMapComment" type="com.scitc.blog.model.Comment">
+        <id column="comment_id" property="commentId"/>
+        <result column="comment_content" property="commentContent"/>
+        <result column="to_id" property="toId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="create_time"  property="createTime"/>
+        <association  column="from_id" property="userInfoFrom" javaType="com.scitc.blog.model.UserInfo">
+            <id column="from_id" property="userId"/>
+            <result column="username" property="username"/>
+            <result column="user_img" property="userImg"/>
+        </association>
+        <association column="article_id" property="article" javaType="com.scitc.blog.model.Article">
+            <id column="article_id" property="articleId"/>
+            <id column="article_title" property="articleTitle"/>
+        </association>
+    </resultMap>
+    <insert id="insertComment" parameterType="com.scitc.blog.model.Comment" useGeneratedKeys="true"
+            keyColumn="comment_id" keyProperty="commentId">
+        INSERT INTO tb_comment(comment_content,from_id,article_id, create_time, to_id,parent_id) VALUES (#{commentContent},#{userInfoFrom.userId},#{article.articleId},#{createTime},#{toId},#{parentId})
+
+    </insert>
+    <delete id="deleteComment" parameterType="Integer">
+        DELETE FROM tb_comment WHERE comment_id=#{commentId}
+    </delete>
+    <select id="queryCommentById" parameterType="Integer" resultMap="resultMapComment">
+        SELECT
+        c.comment_id,
+        c.comment_content,
+        a.article_id,
+        a.article_title,
+        c.create_time,
+        c.parent_id,
+        c.from_id,
+        u.username,
+        u.user_img,
+        c.to_id
+        FROM
+          tb_comment c,
+          tb_user_info u,
+          tb_article a
+        WHERE
+          comment_id=#{commentId} AND c.from_id = u.user_id AND a.article_id = c.article_id
+    </select>
+    <select id="queryComment"  parameterType="com.scitc.blog.model.Comment" resultMap="resultMapComment">
+        SELECT
+        c.comment_id,
+        c.comment_content,
+        a.article_id,
+        a.article_title,
+        c.create_time,
+        c.parent_id,
+        c.from_id,
+        u.username,
+        u.user_img,
+        c.to_id
+        FROM
+        tb_comment c,
+        tb_user_info u,
+        tb_article a
+    <where>
+        <if test="comment.userInfoFrom!=null">AND from_id = #{comment.userInfoFrom.userId}</if>
+        <if test="comment.article!=null">AND c.article_id = #{comment.article.articleId}</if>
+        <if test="comment.toId!=null">AND to_id = #{comment.toId}</if>
+        <if test="comment.parentId!=null">AND parent_id = #{comment.parentId}</if>
+        AND c.from_id = u.user_id AND a.article_id = c.article_id
+    </where>
+        ORDER BY
+        c.create_time DESC
+        LIMIT #{rowIndex},#{pageSize}
+    </select>
+
+    <select id="queryCommentCount" resultType="int">
+        SELECT COUNT(1)
+        FROM
+        tb_comment c,
+        tb_user_info u,
+        tb_article a
+        <where>
+            <if test="comment.userInfoFrom!=null">AND from_id = #{comment.userInfoFrom.userId}</if>
+            <if test="comment.article!=null">AND c.article_id = #{comment.article.articleId}</if>
+            <if test="comment.toId!=null">AND to_id = #{comment.toId}</if>
+            <if test="comment.parentId!=null">AND parent_id = #{comment.parentId}</if>
+            AND c.from_id = u.user_id AND a.article_id = c.article_id
+        </where>
+    </select>
+</mapper>

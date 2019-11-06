@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>小咸鱼 | </title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="referrer" content="no-referrer">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="renderer" content="webkit">
+    <meta name="theme-color" content="#fff">
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <meta name='robots' content='noindex,follow'/>
+    <link rel="stylesheet" href="#"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="#" th:href="@{/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" href="index.css" th:href="@{/css/frontend/index.css}">
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #eee;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3798e8;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+<div id="page" class="hfeed site">
+    <!--头部 导航-->
+    <header th:replace="common/maincommon :: #masthead">
+    </header>
+
+    <!--搜索 文本框-->
+    <div th:replace="common/maincommon :: #search-main">
+    </div>
+
+    <nav class="breadcrumb">
+        <!--<a class="crumbs" href="#"><i class="fa fa-home"></i>首页</a>-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--<a class="crumbs" href="#">Java 开发</a>-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--正文-->
+    </nav>
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+            </main><!-- .site-main -->
+
+            <nav th:replace="common/maincommon :: .navigation">
+            </nav>
+        </div><!-- .content-area -->
+
+        <div th:replace="common/maincommon :: #sidebar">
+        </div>
+        <div class="clear"></div>
+    </div><!-- .site-content -->
+
+    <div class="clear"></div>
+    <div th:replace="common/maincommon :: .links-box">
+    </div>
+
+    <div class="clear"></div>
+    <footer th:replace="common/maincommon :: #colophon">
+    </footer>
+
+</div><!-- .site -->
+<script type='text/javascript' src="jquery.min.js " th:src="@{/js/common/jquery.min.js}"></script>
+<!--轮播图-->
+<script href="#" th:src="@{/layui/layui.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="catetag.js" th:src="@{/js/frontend/catetag.js}"></script>
+<script src="index.js" th:src="@{/js/frontend/choice.js}"></script>
+<script src="script.js" th:src="@{/js/frontend/component/script.js}"></script>
+<script>
+
+</script>
+
+</body>
+
+</html>

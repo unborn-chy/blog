@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小咸鱼 | 分类编辑</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!--css js 文件的引入-->
+    <link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css"
+          th:href="@{/AdminLTE-2.4.13/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/AdminLTE.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/AdminLTE.min.css}">
+    <!-- 蓝色皮肤 -->
+    <link rel="stylesheet" href="../AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css"
+          th:href="@{/AdminLTE-2.4.13/dist/css/skins/skin-blue.min.css}">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--toastr.js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/admin/newarticle.css" th:href="@{/css/admin/common.css}">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--顶部状态栏-->
+    <div th:replace="common/admincommon :: #common-main-header">
+    </div>
+
+    <!--侧边栏-->
+    <div th:replace="common/admincommon :: #common-main-sidebar">
+    </div>
+
+
+    <!--主要内容-->
+    <div class="content-wrapper">
+        <!-- 导航 -->
+        <section class="content-header">
+            <h1>
+                公告
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">公告</li>
+            </ol>
+        </section>
+        <!--中间-->
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title advice-title">添加公告</h3>
+                        </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <!--<input type="text" class="form-control" id="cate-name"  placeholder="">-->
+                                    <textarea type="text" class="form-control" id="advice-content"  rows="4" placeholder="请输入公告"></textarea>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary btn-sm" id="btn-advice">确定添加</button>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title all-advice">所有公告</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="advice-tbody">
+
+                                <!--<tr>-->
+                                    <!--<td>计算机科学</td>-->
+                                    <!--<td>-->
+                                        <!--<a data-pjax="true" href="/admin/category/edit?cateId=198" class="btn btn-primary btn-xs ">修改</a>-->
+                                        <!--<button class="btn btn-danger btn-xs delete-category" onclick="removeIt(198)">永久删除</button>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--模态框-->
+
+        <div th:replace="common/admincommon :: .common-confirm-delete">
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <div th:replace="common/admincommon :: #common-main-footer">
+    </div>
+
+
+</div>
+<script src="../AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="../AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/AdminLTE-2.4.13/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script src="../AdminLTE-2.4.13/dist/js/adminlte.min.js" th:src="@{/AdminLTE-2.4.13/dist/js/adminlte.min.js}"></script>
+<script type="text/javascript" src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript"  src="/js/admin/usercommon.js" th:src="@{/js/admin/usercommon.js}"></script>
+<script type="text/javascript" src="js/admin/advice.js" th:src="@{/js/admin/advice.js}"></script>
+</body>
+</html>
