@@ -1,4 +1,4 @@
-#个人博客
+# 个人博客
 导入blog.sql，修改yml配置文件，把邮箱账号密码改成自己的，yml中设置自己的图片上传目录,MyMvcConfig.java也需要更改导入之后数据库应该是没有图片的。
 项目主页：http://localhost/blog/index
 
